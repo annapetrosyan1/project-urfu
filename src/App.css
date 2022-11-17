@@ -92,11 +92,31 @@
   margin-left: 8px;
 }
 
-/* .nav__item1 {
-  list-style-type: none;
-  display: inline;
-  margin-left: 8px;
-} */
+.nav__item:nth-last-of-type(-n+2) {
+  float: right;
+  margin-right: 8px;
+}
+
+.card__img {
+  padding: 24px;
+  min-width: 100px;
+  max-width: 100px;
+  min-height: 100px;
+  min-height: 100px;
+  border-radius: 20%;
+}
+
+.col {
+  display: inline-block;
+}
+
+.col-2 {
+  display: inline-block;
+}
+
+h4 {
+  padding-top: 24px;
+}
 
 .nav__item1 {
   list-style-type: none;
@@ -112,5 +132,5 @@
 }
 
 h3 {
-  margin-left: 120px;
+  margin-left: 25px;
 }

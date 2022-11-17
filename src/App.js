@@ -1,5 +1,8 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Collection from './Collection';
+import Events from './Events';
+import CollectionSelection from './CollectionSelection';
 import HomePage from './HomePage';
 import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage';
@@ -15,6 +18,9 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path='/events' element={<Events />} />
+            <Route path='/sets' element={<Collection />} />
+            <Route path='/find' element={<CollectionSelection />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
           </Routes> 
@@ -26,14 +32,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
-
-{/* <Collections />
-          <div className='map'>
-            <h3>Мероприятия рядом с </h3> <p>Местоположение</p>
-            <p>Тут должна быть карта</p>
-          </div> */}
