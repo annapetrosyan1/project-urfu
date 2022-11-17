@@ -92,6 +92,25 @@
   margin-left: 8px;
 }
 
+/* .nav__item1 {
+  list-style-type: none;
+  display: inline;
+  margin-left: 8px;
+} */
+
+.nav__item1 {
+  list-style-type: none;
+  display: inline;
+  margin-left: 8px;
+  float: right;
+}
+
+.nav__item2 {
+  display: inline;
+  margin-right: 8px;
+  cursor: pointer
+}
+
 h3 {
   margin-left: 120px;
 }
