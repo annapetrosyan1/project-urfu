@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CollectionSelection() {
+function Find() {
     return (
         <div>
             <h3>Поиск мероприятия</h3>
@@ -18,4 +18,4 @@ function CollectionSelection() {
     );
 }
 
-export default CollectionSelection;
+export default Find;

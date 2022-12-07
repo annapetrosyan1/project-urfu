@@ -1,7 +1,7 @@
 import React from "react";
 import './login.css';
 
-function RegisterPage() {
+function Register() {
     return (
     <div class="limiter">
 		<div class="container__login">
@@ -80,4 +80,4 @@ function RegisterPage() {
     );
 }
 
-export default RegisterPage;
+export default Register;

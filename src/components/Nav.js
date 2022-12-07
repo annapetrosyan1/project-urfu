@@ -1,35 +1,46 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import HomePage from '../HomePage';
-import LoginPage from '../LoginPage';
-import RegisterPage from '../RegisterPage';
+import Container from "react-bootstrap/esm/Container";
+import { Link } from "react-router-dom";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 import logo from '../logo.svg';
 
-function Nav() {
+function Header() {
     return(
-        <div className="header">
-            <nav className="navbar">
-              <div className="container-navbar">
-                <a className="navbar-logo" href="/">
-                  <img
-                    src={logo}
-                    alt="logo"
-                    width={50}
-                    style={{ filter: "brightness(10000%)" }}
-                  />
-                </a>                
-                <ul>
-                  {/* временно */}
-                  <li className='nav__item'><a href='/events'>Мероприятия</a></li>
-                  <li className='nav__item'><a href='/sets'>Подборки</a></li>
-                  <li className='nav__item'><a href='/find'>Подбор мероприятия</a></li>
-                  <li className='nav__item'><a href='/login'>Войти</a></li>
-                  <li className='nav__item'><a href='/register'>Зарегистрироваться</a></li>
-                </ul>
-              </div>
-            </nav>
-        </div>
+      <Navbar
+      collapseOnSelect
+      expand="lg"
+      variant="dark"
+      style={{ minWidth: "310px", background: "#799DE4" }}
+    >
+      <Container>
+        <Navbar.Brand>
+          <Link className="navbar-brand" to="/">
+            <img
+              src={logo}
+              alt="logo"
+              width={70}
+              style={{ filter: "brightness(10000%)", marginTop: "-4.5px" }}
+            />
+          </Link>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Link className="nav-link active" to="/events">
+              Мероприятия
+            </Link>
+            <Link className="nav-link active" to="/sets">
+              Подборки
+            </Link>
+            <Link className="nav-link active" to="/find">
+              Подбор мероприятия
+            </Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
     )
 }
 
-export default Nav;
+export default Header;

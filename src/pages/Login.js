@@ -1,8 +1,7 @@
-/* eslint-disable no-undef */
 import React from "react";
 import './login.css';
 
-function LoginPage() {
+function Login() {
     return (
     <div class="limiter">
 		<div class="container__login">
@@ -54,4 +53,4 @@ function LoginPage() {
     );
 }
 
-export default LoginPage;
+export default Login;

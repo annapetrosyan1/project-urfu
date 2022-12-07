@@ -1,15 +1,15 @@
 import React from "react";
 import Events from "./Events";
-import Collection from "./Collection";
+import Sets from "./Sets";
 
-function HomePage() {
+function Home() {
     return (
         <div>
             <div>
             <Events />
             </div>
             <div>
-            <Collection />
+            <Sets />
             </div>
         <div className='map'>
           <h3>Мероприятия рядом с </h3> <p>Местоположение</p>
@@ -19,4 +19,4 @@ function HomePage() {
     );
 }
 
-export default HomePage;
+export default Home;
