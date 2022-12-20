@@ -1,32 +1,34 @@
 import React from 'react';
 import logo from '../logo.svg';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import { Row, Col, Card} from 'react-bootstrap';
+import '../App.css'
 
 function Sets() {
     return (
-        <div>
+        <div className="my-3">
             <h3>Подборки</h3>
-            <Row xs={1} md={3} className="g-4">
-            {Array.from({ length: 3 }).map((_, idx) => (
+            <Row xs={1} md={3} className="g-2 my-3">
+            {Array.from({ length: 9 }).map((_, idx) => (
                 <Col>
                 <Card>
-                    <Card.Img className='card__img'
-                            variant="top"
-                            src={logo}
-                            style={{ padding: '24px', width: '100px'}}
-                    />
-                    <Card.Body>
-                    <Card.Title>Название</Card.Title>
-                    <Card.Text>Количество мероприятий</Card.Text>
-                    </Card.Body>
+                    <div className='card__wrap'>
+                        <div className='card__body'>
+                            <div className='title'><h5>Название</h5></div>
+                            <div className='subtitle'><p >n мероприятий</p></div>
+                        </div>
+                        <img
+                                className='card__img'
+                                alt='card-img'
+                                src={logo}
+                                style={{ padding: '24px', width: '150px'}}
+                        />
+                    </div>
                 </Card>
                 </Col>
             ))}
         </Row>
         </div>
-    );
+    )
 }
 
 export default Sets;

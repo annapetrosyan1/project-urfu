@@ -1,30 +1,29 @@
 import React from 'react';
 import logo from '../logo.svg';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import { Row, Col, Card } from 'react-bootstrap';
 
 function Events() {
     return (
         <div>
             <h3>Мероприятия</h3>
-            <Row xs={1} md={3} className="g-4">
+            <Row xs={1} md={3} className="g-2 my-3">
             {Array.from({ length: 3 }).map((_, idx) => (
                 <Col>
                 <Card>
-                    <Card.Img 
-                            variant="top" 
-                            src={logo}
-                            style={{ padding: '24px', width: '100px'}}
+                <div className='card__wrap'>
+                    <img
+                        className='card__img'
+                        alt='card-img'
+                        src={logo}
+                        style={{ padding: '24px', width: '100px'}}
                     />
-                    <Card.Body>
-                    <Card.Title>Название</Card.Title>
-                    <Card.Text>
-                        This is a longer card with supporting text below as a natural
-                        lead-in to additional content. This content is a little bit
-                        longer.
-                    </Card.Text>
-                    </Card.Body>
+                    <div className='card__body'>
+                            <div className='title'><h5>Название</h5></div>
+                            <div className='subtitle'><span>
+                                This is a longer card with supporting text below as a natural</span></div>
+                                {/* дата и место */}
+                        </div>
+                </div>
                 </Card>
                 </Col>
             ))}

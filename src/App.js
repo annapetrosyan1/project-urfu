@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Container from "react-bootstrap/esm/Container";
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path='/find' element={<Find />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes> 
       </Container>
       </div>
