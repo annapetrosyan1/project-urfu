@@ -5,7 +5,7 @@ import { Row, Col, Card } from 'react-bootstrap';
 function Events() {
     return (
         <div>
-            <h3>Мероприятия</h3>
+            <h3>Афиша мероприятий</h3>
             <Row xs={1} md={3} className="g-2 my-3">
             {Array.from({ length: 3 }).map((_, idx) => (
                 <Col>

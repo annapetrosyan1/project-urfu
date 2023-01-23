@@ -45,6 +45,8 @@
 
 .site__content {
   flex: 1;
+  font-size: 16px;
+  font-family: Inter;
 }
 
 .header {
@@ -96,5 +98,67 @@
 .card__wrap {
   display: flex;
   justify-content: space-between;
-  /* overflow-wrap: anywhere; */
 }
+
+select, input {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 7px;
+  height: 38px;
+  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.find-item {
+  display: flex;
+  justify-content: left;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 16px;
+  font-family: Inter;
+}
+
+.search-button {
+  height: 40px;
+  width: 157px;
+  background-color: #F7F99E;
+  color: #042449;
+  font-family: Inter;
+  border: none;
+  border-radius: 7px;
+  text-align: center;
+  vertical-align: middle;
+  float: right;
+}
+
+.search-button:hover {
+  background-color: #F1F38B;
+}
+
+.save-button {
+  float: left;
+}
+
+.profile-form {
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.profile-form > label, input {
+  height: 38px; 
+  width: 407px;
+}
+
+.date-string {
+  display: 'flex'; 
+  flex-direction: 'row';
+}
+
+.profile-date{
+  margin-right: 32px;
+}
+/* clear: both;
+    float:left;
+    margin-right:15px; */

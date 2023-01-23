@@ -11,10 +11,6 @@ function Home() {
             <div>
             <Sets />
             </div>
-        <div className='map'>
-          <h3>Мероприятия рядом с </h3> <p>Местоположение</p>
-            <p>Тут должна быть карта</p>
-          </div>
         </div>
     );
 }

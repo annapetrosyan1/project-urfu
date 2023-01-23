@@ -8,7 +8,7 @@ function Sets() {
         <div className="my-3">
             <h3>Подборки</h3>
             <Row xs={1} md={3} className="g-2 my-3">
-            {Array.from({ length: 9 }).map((_, idx) => (
+            {Array.from({ length: 3 }).map((_, idx) => (
                 <Col>
                 <Card>
                     <div className='card__wrap'>

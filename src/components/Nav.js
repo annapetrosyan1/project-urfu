@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import logo from '../logo.svg';
+import '../App.css';
 
 function Header() {
     return(
@@ -35,6 +36,14 @@ function Header() {
             </Link>
             <Link className="nav-link active" to="/find">
               Подбор мероприятия
+            </Link>
+            </Nav>
+            <Nav>
+            <Link className="nav-link active" to="/login">
+              Войти
+            </Link>
+            <Link className="nav-link active" to="/register">
+              Зарегистрироваться
             </Link>
           </Nav>
         </Navbar.Collapse>
