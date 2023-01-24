@@ -11,6 +11,8 @@ import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Container from "react-bootstrap/esm/Container";
 import Profile from './pages/Profile';
+import EventsManagement from './pages/EventsManagement';
+import Error from './pages/Error';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path='/my' element={<EventsManagement />} />
+            <Route path="/*" element={<Error replace />} />
           </Routes> 
       </Container>
       </div>

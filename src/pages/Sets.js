@@ -13,8 +13,8 @@ function Sets() {
                 <Card>
                     <div className='card__wrap'>
                         <div className='card__body'>
-                            <div className='title'><h5>Название</h5></div>
-                            <div className='subtitle'><p >n мероприятий</p></div>
+                            <div className='sets-title'><h5>Название</h5></div>
+                            <div className='sets-subtitle'><p >n мероприятий</p></div>
                         </div>
                         <img
                                 className='card__img'

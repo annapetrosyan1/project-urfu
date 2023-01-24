@@ -18,11 +18,13 @@ function Events() {
                         style={{ padding: '24px', width: '100px'}}
                     />
                     <div className='card__body'>
-                            <div className='title'><h5>Название</h5></div>
-                            <div className='subtitle'><span>
-                                This is a longer card with supporting text below as a natural</span></div>
-                                {/* дата и место */}
-                        </div>
+                        <div className='title'><h5>Название</h5></div>
+                            <div className='subtitle'>
+                                <span>This is a longer card with supporting text below as a natural</span>
+                            </div>
+                            <div style={{ float: 'left', marginLeft: '24px'}}>Дата</div>
+                            <div style={{ position: 'absolute', right: '0', marginRight: '32px'}}>Место</div>
+                    </div>
                 </div>
                 </Card>
                 </Col>

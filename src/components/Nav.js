@@ -37,6 +37,9 @@ function Header() {
             <Link className="nav-link active" to="/find">
               Подбор мероприятия
             </Link>
+            <Link className="nav-link active" to='/my'>
+              Управление мероприятиями
+            </Link>
             </Nav>
             <Nav>
             <Link className="nav-link active" to="/login">

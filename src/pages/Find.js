@@ -1,22 +1,21 @@
 import React from 'react';
-import logo from '../logo.svg';
-import { Form, Nav} from 'react-bootstrap';
+import { Form} from 'react-bootstrap';
 import '../App.css';
 
 function Find() {
     return (
         <div>
-        <Nav aria-label="breadcrumb">
+        {/* <Nav aria-label="breadcrumb">
         <ol className="breadcrumb">
             <li className="breadcrumb-item"><a href="/">Главная</a></li>
             <li className="breadcrumb-item active" aria-current="page">Подобрать мероприятие</li>
         </ol>
-        </Nav>
+        </Nav> под вопросом*/} 
         <Form>
             <fieldset>
             <legend>Подобрать мероприятие</legend>
-            <div className='find-item'>
-                <p><label htmlFor="org">Организатор</label><br/>
+            <div className='find-items'>
+                <p className='find-item'><label htmlFor="org">Организатор</label>
                         <select id="org">
                             <option disabled>Выберите</option>
                             <option value="ienim">ИЕНИМ</option>
@@ -31,14 +30,14 @@ function Find() {
                             <option value="fti">ФТИ</option>
                             <option value="hti">ХТИ</option>
                         </select></p>
-                <p><label htmlFor="participant">Количество участников</label> <br/>
+                <p className='find-item'><label htmlFor="participant">Количество участников</label> <br/>
                 <input type="number" id="participant-input" name="participant"
                 min="50" max="500" /></p>
-                <p><label htmlFor="date">Дата начала</label><br/>
+                <p className='find-item'><label htmlFor="date">Дата начала</label><br/>
                     <input type="date" className='date-input' /> </p>
-                <p><label htmlFor="date">Дата окончания</label><br/>
+                <p className='find-item'><label htmlFor="date">Дата окончания</label><br/>
                     <input type="date" className='date-input' /> </p>
-                <p><label htmlFor="place">Место проведения</label> <br/>
+                <p className='find-item'><label htmlFor="place">Место проведения</label> <br/>
                         <select id='place'>
                             <option disabled>Выберите</option>
                             <option value='gogolya-25'>Гоголя, 25</option>
@@ -53,7 +52,7 @@ function Find() {
                             <option value='mira-32'>Мира, 32</option>
                             <option value='s-kovalevskoi-5'>С. Ковалевской, 5</option>
                         </select></p>
-                <p><label htmlFor="place">Тип мероприятия</label><br/>
+                <p className='find-item'><label htmlFor="place">Тип мероприятия</label><br/>
                         <select name='type' id='type' multiple="multiple" size="3">
                             <option disabled>Выберите</option>
                             <option value='sport'>Спорт</option>
