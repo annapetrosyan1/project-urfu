@@ -19,7 +19,6 @@ function Sets() {
 
   return (
     <div className="my-3">
-      <h3>Подборки</h3>
       <Row xs={1} md={3} className="g-2 my-3">
         {tags.map((e, i) => (
           <Col key={i}>

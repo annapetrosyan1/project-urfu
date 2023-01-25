@@ -1,18 +1,20 @@
 import React from "react";
-import Events from "./Events";
-import Sets from "./Sets";
+import Events from "../components/Events";
+import Sets from "../components/Sets";
 
 function Home() {
-    return (
-        <div>
-            <div>
-            <Events />
-            </div>
-            <div>
-            <Sets />
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      <div>
+        <h3>Ближайшие события</h3>
+        <Events />
+      </div>
+      <div>
+        <h3>Подборки</h3>
+        <Sets />
+      </div>
+    </div>
+  );
 }
 
 export default Home;

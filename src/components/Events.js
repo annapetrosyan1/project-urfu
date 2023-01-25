@@ -3,7 +3,7 @@ import logo from "../logo.svg";
 import { Row, Col, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-export default function EventsPage() {
+function Events() {
   const navigate = useNavigate();
   const [events, setEvents] = useState([]);
 
@@ -12,7 +12,6 @@ export default function EventsPage() {
       const response = await fetch("http://46.48.59.66:2222/events");
       const result = await response.json();
       setEvents(result);
-      console.log(result);
     };
     doFetch();
   };
@@ -21,7 +20,6 @@ export default function EventsPage() {
 
   return (
     <div>
-      <h3>Афиша мероприятий</h3>
       <Row xs={1} md={3} className="g-2 my-3">
         {events.map((e, i) => (
           <Col key={i}>
@@ -64,3 +62,5 @@ export default function EventsPage() {
     </div>
   );
 }
+
+export default Events;
