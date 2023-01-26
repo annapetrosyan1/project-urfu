@@ -11,6 +11,7 @@ function Events() {
     const doFetch = async () => {
       const response = await fetch("http://46.48.59.66:2222/events");
       const result = await response.json();
+      result.length = 3;
       setEvents(result);
     };
     doFetch();
@@ -41,18 +42,8 @@ function Events() {
                   <div className="subtitle">
                     <span>Описание</span>
                   </div>
-                  <div style={{ float: "left", marginLeft: "24px" }}>
-                    Дата: {e.date + " " + e.start_time}
-                  </div>
-                  <div
-                    style={{
-                      position: "absolute",
-                      right: "0",
-                      marginRight: "32px",
-                    }}
-                  >
-                    Место: {e.address}
-                  </div>
+                  <div>Дата: {e.date + " " + e.start_time}</div>
+                  <div>Место: {e.address}</div>
                 </div>
               </div>
             </Card>

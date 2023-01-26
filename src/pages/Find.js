@@ -1,6 +1,86 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import "../App.css";
+import Select from "react-select";
+
+const tags = [
+  {
+    value: 0,
+    label: "Спорт",
+  },
+  {
+    value: 1,
+    label: "Музыка",
+  },
+  {
+    value: 2,
+    label: "Учеба",
+  },
+  {
+    value: 3,
+    label: "Наука",
+  },
+  {
+    value: 4,
+    label: "Развлечения",
+  },
+  {
+    value: 5,
+    label: "Соревнования",
+  },
+  {
+    value: 6,
+    label: "Олимпиада",
+  },
+  {
+    value: 7,
+    label: "Программирование",
+  },
+  {
+    value: 8,
+    label: "Праздник",
+  },
+  {
+    value: 9,
+    label: "Культура и искусство",
+  },
+  {
+    value: 10,
+    label: "Творчество",
+  },
+  {
+    value: 11,
+    label: "Университетское",
+  },
+  {
+    value: 12,
+    label: "Мастеркласс",
+  },
+  {
+    value: 13,
+    label: "Cтажировка",
+  },
+  {
+    value: 14,
+    label: "Волонтер",
+  },
+  {
+    value: 15,
+    label: "Медиа",
+  },
+  {
+    value: 16,
+    label: "Туризм",
+  },
+  {
+    value: 17,
+    label: "Медицина",
+  },
+  {
+    value: 18,
+    label: "Кино",
+  },
+];
 
 function Find() {
   return (
@@ -9,7 +89,7 @@ function Find() {
         <fieldset>
           <legend>Подобрать мероприятие</legend>
           <div className="find-items">
-            <p className="find-item">
+            {/* <p className="find-item">
               <label htmlFor="org">Организатор</label>
               <select id="org">
                 <option disabled>Выберите</option>
@@ -25,7 +105,7 @@ function Find() {
                 <option value="fti">ФТИ</option>
                 <option value="hti">ХТИ</option>
               </select>
-            </p>
+            </p> */}
             <p className="find-item">
               <label htmlFor="participant">Количество участников</label> <br />
               <input
@@ -46,7 +126,7 @@ function Find() {
               <br />
               <input type="date" className="date-input" />{" "}
             </p>
-            <p className="find-item">
+            {/* <p className="find-item">
               <label htmlFor="place">Место проведения</label> <br />
               <select id="place">
                 <option disabled>Выберите</option>
@@ -62,33 +142,17 @@ function Find() {
                 <option value="mira-32">Мира, 32</option>
                 <option value="s-kovalevskoi-5">С. Ковалевской, 5</option>
               </select>
-            </p>
+            </p> */}
             <p className="find-item">
               <label htmlFor="place">Тип мероприятия</label>
               <br />
-              <select name="type" id="type" multiple="multiple" size="3">
-                <option disabled>Выберите</option>
-                <option value="sport">Спорт</option>
-                <option value="music">Музыка</option>
-                <option value="study">Учеба</option>
-                <option value="science">Наука</option>
-                <option value="fun">Развлечения</option>
-                <option value="competition">Соревнования</option>
-                <option value="olimpic">Олимпиада</option>
-                <option value="it">Программирование</option>
-                <option value="party">Праздник</option>
-                <option value="culture">Культура и искусство</option>
-                <option value="">Творчество</option>
-                <option value="local">Локальное</option>
-                <option value="university">Университетское</option>
-                <option value="master-class">Мастер класс</option>
-                <option value="inter">Стажировка</option>
-                <option value="volunteer">Волонтер</option>
-                <option value="media">Медиа</option>
-                <option value="tourism">Туризм</option>
-                <option value="medicine">Медицина</option>
-                <option value="movie">Кино</option>
-              </select>
+              <Select
+                closeMenuOnSelect={false}
+                isMulti
+                placeholder="Настольные игры, ..."
+                options={tags}
+                // onChange={(e) => handleEvent("tags", e)}
+              />
             </p>
           </div>
         </fieldset>

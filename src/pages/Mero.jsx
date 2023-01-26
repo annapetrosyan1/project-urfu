@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import logo from "../logo.svg";
-import { Row, Col, Card } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
 export default function EventsPage() {
   const location = useLocation();
@@ -24,10 +26,19 @@ export default function EventsPage() {
   useEffect(getEvents, []);
 
   return (
-    <div>
-      <Row xs={1} md={3} className="g-2 my-3">
-        {event.title}
-      </Row>
-    </div>
+    <Card>
+      <Card.Header>Хорошее событие!</Card.Header>
+      <Card.Body>
+        <Card.Title>{event.title}</Card.Title>
+        <Card.Text>
+          With supporting text below as a natural lead-in to additional content.
+        </Card.Text>
+        <Card.Text>{event.date}</Card.Text>
+        <Card.Text>{event.start_time}</Card.Text>
+        <Card.Text>{event.address}</Card.Text>
+        <Card.Text>На {event.count_people} человек </Card.Text>
+        <Button variant="success">Пойду</Button>
+      </Card.Body>
+    </Card>
   );
 }

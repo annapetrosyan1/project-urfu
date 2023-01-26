@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 import Container from "react-bootstrap/esm/Container";
 import { Link } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import logo from '../logo.svg';
-import '../App.css';
+import logo from "../logo.svg";
+import "../App.css";
 
 function Header() {
-    return(
-      <Navbar
+  return (
+    <Navbar
       collapseOnSelect
       expand="lg"
       variant="dark"
@@ -37,22 +37,30 @@ function Header() {
             <Link className="nav-link active" to="/find">
               Подбор мероприятия
             </Link>
-            <Link className="nav-link active" to='/my'>
+            <Link className="nav-link active" to="/my">
               Управление мероприятиями
             </Link>
-            </Nav>
-            <Nav>
-            <Link className="nav-link active" to="/login">
-              Войти
-            </Link>
-            <Link className="nav-link active" to="/register">
-              Зарегистрироваться
-            </Link>
+          </Nav>
+          <Nav>
+            {sessionStorage.getItem("token") ? (
+              <Link className="nav-link active" to="/profile">
+                Профиль
+              </Link>
+            ) : (
+              <>
+                <Link className="nav-link active" to="/login">
+                  Войти
+                </Link>
+                <Link className="nav-link active" to="/register">
+                  Зарегистрироваться
+                </Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    )
+  );
 }
 
 export default Header;
