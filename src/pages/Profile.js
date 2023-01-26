@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
+import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
 
 function Profile() {
-
-
   return (
     <div>
       <Form>
@@ -20,13 +19,13 @@ function Profile() {
               <br />
               <input type="text" id="name" required />
             </p>
-            <p>
+            {/* <p>
               <label htmlFor="mid-name">Отчество</label>
               <br />
               <input type="text" id="mid-name" required />
-            </p>
+            </p> */}
 
-            <div className="date-string">
+            {/* <div className="date-string">
               <div className="profile-date">
                 <label htmlFor="date">Дата рождения </label>
                 <br />
@@ -43,13 +42,13 @@ function Profile() {
                   <option value="female">Женский</option>
                 </select>
               </div>
-            </div>
+            </div> */}
             <p>
               <label htmlFor="email">E-mail</label>
               <br />
               <input type="email" id="email" required />
             </p>
-            <p>
+            {/* <p>
               <label htmlFor="org">Организация</label>
               <br />
               <select id="org" required style={{ width: "407px" }}>
@@ -66,14 +65,29 @@ function Profile() {
                 <option value="fti">ФТИ</option>
                 <option value="hti">ХТИ</option>
               </select>
-            </p>
+            </p> */}
           </div>
         </fieldset>
-        <p>
-          <button type="button" className="search-button save-button">
-            Сохранить
-          </button>
-        </p>
+        <Button
+          className="mb-2"
+          onClick={() => {
+            sessionStorage.clear();
+          }}
+          variant="warning"
+        >
+          Сохранить
+        </Button>{" "}
+        <div>
+          <Button
+            onClick={() => {
+              sessionStorage.clear();
+            }}
+            variant="outline-danger"
+            size="sm"
+          >
+            Выйти
+          </Button>{" "}
+        </div>
       </Form>
     </div>
   );

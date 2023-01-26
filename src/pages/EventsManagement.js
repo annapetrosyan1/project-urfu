@@ -90,6 +90,19 @@ export default function EventsManagement() {
   const [modalShow, setModalShow] = useState(false);
   const [myEvents, setMyEvents] = useState([]);
 
+  const deleteEvent = async (i) => {
+    const response = await fetch("http://46.48.59.66:2222/events/delete", {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token"),
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({ id: i }),
+    });
+    const result = await response.json();
+    getMyEvents();
+  };
+
   const getMyEvents = () => {
     const doFetch = async () => {
       const response = await fetch("http://46.48.59.66:2222/events/my", {
@@ -109,52 +122,59 @@ export default function EventsManagement() {
   useEffect(getMyEvents, []);
 
   return (
-    <div>
-      <h3>Управление мероприятиями</h3>
-      <CreateEvent show={modalShow} onHide={() => setModalShow(false)} />
-      <p>
-        <button
-          onClick={() => setModalShow(true)}
-          type="button"
-          className="create-button"
-        >
-          Создать мероприятие
-        </button>
-      </p>
-      <h4>Вы - организатор</h4>
-      {myEvents.map((e, i) => (
-        <Card key={i} className="event-card-wrap">
-          <div className="card-body">
-            <div className="card-title">
+    <Row>
+      <Col md={8}>
+        <h3>Управление мероприятиями</h3>
+        <CreateEvent show={modalShow} onHide={() => setModalShow(false)} />
+        <p>
+          <button
+            onClick={() => setModalShow(true)}
+            type="button"
+            className="create-button"
+          >
+            Создать мероприятие
+          </button>
+        </p>
+        <h4>Вы - организатор</h4>
+        {myEvents?.map((e, i) => (
+          <Card key={i} className="px-3 py-5">
+            <div>
               <h5>Название: {e.title}</h5>
+              <div>Дата и время: {e.date + " " + e.start_time}</div>
+              <div>
+                <span>Описание</span>
+              </div>
+              <div>Организация</div>
             </div>
-            <div className="event-date">
-              Дата и время: {e.date + " " + e.start_time}
+            <div className="my-5">
+              {e.tags?.map((e, i) => (
+                <span key={i} className="event-type">
+                  {tags.filter((tag) => tag.value == e)[0]?.label}
+                </span>
+              ))}
             </div>
-            <div className="card-subtitle">
-              <span>Описание</span>
+            <div className="d-flex justify-content-between">
+              <div>
+                <Button
+                  onClick={() => deleteEvent(e.id)}
+                  variant="outline-danger"
+                  size="sm"
+                >
+                  Удалить
+                </Button>{" "}
+              </div>
+              <button
+                onClick={() => navigate(`/event/${e.id}`)}
+                type="button"
+                className="will-go-button"
+              >
+                Перейти
+              </button>
             </div>
-            <div className="org">Организация</div>
-          </div>
-          <div id="event-types">
-            {e.tags?.map((e, i) => (
-              <span key={i} className="event-type">
-                {tags.filter((tag) => tag.value == e)[0]?.label}
-              </span>
-            ))}
-          </div>
-          <p>
-            <button
-              onClick={() => navigate(`/event/${e.id}`)}
-              type="button"
-              className="will-go-button"
-            >
-              Перейти
-            </button>
-          </p>
-        </Card>
-      ))}
-    </div>
+          </Card>
+        ))}
+      </Col>
+    </Row>
   );
 }
 

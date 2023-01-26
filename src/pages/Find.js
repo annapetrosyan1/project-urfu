@@ -1,7 +1,11 @@
-import React from "react";
-import { Form } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Col, Form, Row } from "react-bootstrap";
 import "../App.css";
 import Select from "react-select";
+import Button from "react-bootstrap/Button";
+import Table from "react-bootstrap/Table";
+
+import { useNavigate } from "react-router-dom";
 
 const tags = [
   {
@@ -83,85 +87,136 @@ const tags = [
 ];
 
 function Find() {
+  const navigate = useNavigate();
+  const [events, setEvents] = useState([]);
+  const [setting, setSettings] = useState({
+    title: "",
+    date: [],
+    count_people: [],
+    start_time: [],
+    owner: [],
+    tags: [],
+  });
+
+  const handleSettings = (key, value, key2) => {
+    const obj = { ...setting };
+    if (key2) {
+      obj[key][key2] = value;
+    } else {
+      obj[key] = value;
+    }
+    setSettings(obj);
+    console.log(obj);
+  };
+
+  const getEvents = () => {
+    const obj = { ...setting };
+    obj.tags = obj.tags?.map((e) => e.value);
+    const doFetch = async () => {
+      const response = await fetch(`http://46.48.59.66:2222/find/`, {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token"),
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(obj),
+      });
+      const result = await response.json();
+      setEvents(result);
+      console.log(result);
+    };
+    doFetch();
+  };
+
+  useEffect(getEvents, []);
+
   return (
     <div>
       <Form>
-        <fieldset>
-          <legend>Подобрать мероприятие</legend>
-          <div className="find-items">
-            {/* <p className="find-item">
-              <label htmlFor="org">Организатор</label>
-              <select id="org">
-                <option disabled>Выберите</option>
-                <option value="ienim">ИЕНИМ</option>
-                <option value="inmit">ИНМиТ</option>
-                <option value="rtf">ИРИТ-РТФ</option>
-                <option value="isa">ИСА</option>
-                <option value="ifk">ИФКСиПМ</option>
-                <option value="info">ИНФО</option>
-                <option value="iney">ИНЭУ</option>
-                <option value="ugi">УГИ</option>
-                <option value="enin">УралЭНИН</option>
-                <option value="fti">ФТИ</option>
-                <option value="hti">ХТИ</option>
-              </select>
-            </p> */}
-            <p className="find-item">
-              <label htmlFor="participant">Количество участников</label> <br />
-              <input
+        <Row>
+          <Col md={4}>
+            <Form.Group className="mb-3">
+              <Form.Label>Количество учасников</Form.Label>
+              <Form.Control
+                onChange={(e) =>
+                  handleSettings("count_people", e.target.value, "0")
+                }
                 type="number"
-                id="participant-input"
-                name="participant"
-                min="50"
-                max="500"
+                placeholder="1"
               />
-            </p>
-            <p className="find-item">
-              <label htmlFor="date">Дата начала</label>
-              <br />
-              <input type="date" className="date-input" />{" "}
-            </p>
-            <p className="find-item">
-              <label htmlFor="date">Дата окончания</label>
-              <br />
-              <input type="date" className="date-input" />{" "}
-            </p>
-            {/* <p className="find-item">
-              <label htmlFor="place">Место проведения</label> <br />
-              <select id="place">
-                <option disabled>Выберите</option>
-                <option value="gogolya-25">Гоголя, 25</option>
-                <option value="kominterna-14">Коминтерна, 14</option>
-                <option value="kyibisheva-48">Куйбышева, 48</option>
-                <option value="lenina-13b">Ленина, 13б</option>
-                <option value="lenina-51">Ленина, 51</option>
-                <option value="mira-17">Мира, 17</option>
-                <option value="mira-19">Мира, 19</option>
-                <option value="mira-21">Мира, 21</option>
-                <option value="mira-28">Мира, 28</option>
-                <option value="mira-32">Мира, 32</option>
-                <option value="s-kovalevskoi-5">С. Ковалевской, 5</option>
-              </select>
-            </p> */}
-            <p className="find-item">
-              <label htmlFor="place">Тип мероприятия</label>
-              <br />
+              <Form.Text className="text-muted">От</Form.Text>
+              <Form.Control
+                onChange={(e) =>
+                  handleSettings("count_people", e.target.value, "1")
+                }
+                type="number"
+                placeholder="1000"
+              />
+              <Form.Text className="text-muted">До</Form.Text>
+            </Form.Group>
+          </Col>
+          <Col md={4}>
+            <Form.Group className="mb-3">
+              <Form.Label>Дата начала</Form.Label>
+              <Form.Control
+                onChange={(e) =>
+                  handleSettings("start_time", e.target.value, "0")
+                }
+                type="date"
+              />
+              <Form.Text className="text-muted">От</Form.Text>
+              <Form.Control
+                onChange={(e) =>
+                  handleSettings("start_time", e.target.value, "1")
+                }
+                type="date"
+              />
+              <Form.Text className="text-muted">До</Form.Text>
+            </Form.Group>
+          </Col>
+          <Col md={4}>
+            <Form.Group className="mb-3">
+              <Form.Label>Выберите теги</Form.Label>
               <Select
                 closeMenuOnSelect={false}
                 isMulti
                 placeholder="Настольные игры, ..."
                 options={tags}
-                // onChange={(e) => handleEvent("tags", e)}
+                onChange={(e) => handleSettings("tags", e)}
               />
-            </p>
-          </div>
-        </fieldset>
-        <p>
-          <button type="button" className="search-button">
-            Найти
-          </button>
-        </p>
+            </Form.Group>
+            <div className="d-flex justify-content-end mt-5 me-2">
+              <Button onClick={getEvents} variant="warning">
+                Найти
+              </Button>
+            </div>
+          </Col>
+        </Row>
       </Form>
+      <Table className="mt-5" striped bordered hover>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Мероприятие</th>
+            <th>Место</th>
+            <th>Дата и время проведения</th>
+          </tr>
+        </thead>
+        <tbody>
+          {events.map((e, i) => (
+            <tr
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate(`/event/${e.id}`)}
+              key={i}
+            >
+              <td>{i + 1}</td>
+              <td>{e.title}</td>
+              <td>{e.address}</td>
+              <td>{e.date + " " + e.start_time}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
     </div>
   );
 }

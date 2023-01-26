@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./login.css";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
   const [user, setUser] = useState({});
 
   const handleUser = (key, value) => {
@@ -23,6 +25,7 @@ function Register() {
       },
       body: JSON.stringify(obj),
     });
+    navigate("/login");
   };
 
   return (

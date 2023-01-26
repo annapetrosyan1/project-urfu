@@ -50,11 +50,11 @@
 }
 
 .header {
-  background-color: #799DE4;
+  background-color: #799de4;
 }
 
 .footer {
-  background-color: #799DE4;
+  background-color: #799de4;
 }
 
 .card {
@@ -79,9 +79,6 @@
 }
 
 .card__body {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: flex-end;
   margin: 24px;
 }
 
@@ -113,12 +110,13 @@
   justify-content: space-between;
 }
 
-select, input {
+select,
+input {
   padding: 10px;
   margin: 10px 0;
   border-radius: 7px;
   height: 38px;
-  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
   text-align: center;
   vertical-align: middle;
 }
@@ -143,7 +141,7 @@ select, input {
   float: left;
 }
 
-.find-item:last-child{
+.find-item:last-child {
   display: flex;
   float: left;
   margin-right: 0;
@@ -152,7 +150,7 @@ select, input {
 .search-button {
   height: 40px;
   width: 157px;
-  background-color: #F7F99E;
+  background-color: #f7f99e;
   color: #042449;
   font-family: Inter;
   border: none;
@@ -163,7 +161,7 @@ select, input {
 }
 
 .search-button:hover {
-  background-color: #F1F38B;
+  background-color: #f1f38b;
 }
 
 .save-button {
@@ -175,17 +173,18 @@ select, input {
   vertical-align: middle;
 }
 
-.profile-form > label, input {
-  height: 38px; 
+.profile-form > label,
+input {
+  height: 38px;
   width: 407px;
 }
 
 .date-string {
-  display: 'flex'; 
-  flex-direction: 'row';
+  display: "flex";
+  flex-direction: "row";
 }
 
-.profile-date{
+.profile-date {
   margin-right: 32px;
 }
 
@@ -206,7 +205,7 @@ select, input {
 }
 
 .create-button:hover {
-  background-color: #5277A2;
+  background-color: #5277a2;
 }
 
 .event-card-wrap {
@@ -224,30 +223,25 @@ select, input {
   width: 184px;
   height: 40px;
   color: #346297;
-  background-color: #E8EEFA;
+  background-color: #e8eefa;
   border: none;
   border-radius: 7px;
   text-align: center;
   vertical-align: middle;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 32px;
 }
 
-.will-go-button:hover{
-  background-color: #DCE2E8;
+.will-go-button:hover {
+  background-color: #dce2e8;
 }
 
 .event-type {
   color: #000000;
-  background-color: #F7F99E;
+  background-color: #f7f99e;
   border-radius: 15px;
   border: none;
   text-align: center;
   vertical-align: middle;
-  padding: 8px;
+  padding: 10px;
   margin-right: 16px;
   margin-bottom: 32px;
-  position: relative;
 }

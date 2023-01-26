@@ -38,12 +38,10 @@ export default function EventsPage() {
                   style={{ padding: "24px", width: "100px" }}
                 />
                 <div className="card__body">
-                  <div className="title">
+                  <div>
                     <h5>{e.title}</h5>
                   </div>
-                  <div className="subtitle">
-                    <span>Описание</span>
-                  </div>
+                  <div>Описание</div>
                   <div>Дата: {e.date + " " + e.start_time}</div>
                   <div>Место: {e.address}</div>
                 </div>

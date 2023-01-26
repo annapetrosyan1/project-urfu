@@ -24,7 +24,7 @@ function Events() {
       <Row xs={1} md={3} className="g-2 my-3">
         {events.map((e, i) => (
           <Col key={i}>
-            <Card>
+          <Card>
               <div
                 onClick={() => navigate(`/event/${e.id}`)}
                 className="card__wrap"
@@ -36,12 +36,10 @@ function Events() {
                   style={{ padding: "24px", width: "100px" }}
                 />
                 <div className="card__body">
-                  <div className="title">
+                  <div>
                     <h5>{e.title}</h5>
                   </div>
-                  <div className="subtitle">
-                    <span>Описание</span>
-                  </div>
+                  <div>Описание</div>
                   <div>Дата: {e.date + " " + e.start_time}</div>
                   <div>Место: {e.address}</div>
                 </div>
