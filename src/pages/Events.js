@@ -10,7 +10,13 @@ export default function EventsPage() {
 
   const getEvents = () => {
     const doFetch = async () => {
-      const response = await fetch("http://46.48.59.66:2222/events");
+      const response = await fetch("http://46.48.59.66:2222/events", {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token"),
+          "Content-Type": "application/json;charset=utf-8",
+        },
+      });
       const result = await response.json();
       setEvents(result);
       console.log(result);
@@ -26,7 +32,7 @@ export default function EventsPage() {
       <Row xs={1} md={3} className="g-2 my-3">
         {events.map((e, i) => (
           <Col key={i}>
-            <Card>
+            <Card className="card_item" style={{ cursor: "pointer" }}>
               <div
                 onClick={() => navigate(`/event/${e.id}`)}
                 className="card__wrap"
@@ -34,14 +40,13 @@ export default function EventsPage() {
                 <img
                   className="card__img"
                   alt="card-img"
-                  src={logo}
+                  src={require(`../img/${e.id}.png`)}
                   style={{ padding: "24px", width: "100px" }}
                 />
                 <div className="card__body">
                   <div>
                     <h5>{e.title}</h5>
                   </div>
-                  <div>Описание</div>
                   <div>Дата: {e.date + " " + e.start_time}</div>
                   <div>Место: {e.address}</div>
                 </div>

@@ -84,11 +84,53 @@ const tags = [
   },
 ];
 
-export default function EventsPage() {
+export default function EventsPage(id) {
   const location = useLocation();
   const [event, setEvent] = useState({});
 
-  const getEvents = () => {
+  const joinEvent = async (id) => {
+    console.log(id);
+    const response = await fetch(`http://46.48.59.66:2222/join?id=${id}`, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token"),
+        "Content-Type": "application/json;charset=utf-8",
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+    getEvent();
+  };
+
+  const setLike = async (id) => {
+    console.log(id);
+    const response = await fetch(`http://46.48.59.66:2222/like?id=${id}`, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token"),
+        "Content-Type": "application/json;charset=utf-8",
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+    getEvent();
+  };
+
+  const setDislike = async (id) => {
+    console.log(id);
+    const response = await fetch(`http://46.48.59.66:2222/dislike?id=${id}`, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token"),
+        "Content-Type": "application/json;charset=utf-8",
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+    getEvent();
+  };
+
+  const getEvent = () => {
     const doFetch = async () => {
       const response = await fetch(
         `http://46.48.59.66:2222/events?id=${location.pathname
@@ -102,20 +144,35 @@ export default function EventsPage() {
     doFetch();
   };
 
-  useEffect(getEvents, []);
+  useEffect(getEvent, []);
 
   return (
     <Card>
       <Card.Header>Хорошее событие!</Card.Header>
       <Card.Body>
-        <Card.Title>{event.title}</Card.Title>
+        <Card.Title>
+          <b>Название: </b>
+          {event.title}
+        </Card.Title>
         <Card.Text>
-          With supporting text below as a natural lead-in to additional content.
+          <b>Описание: </b>
+          {event.description}
         </Card.Text>
-        <Card.Text>{event.date}</Card.Text>
-        <Card.Text>{event.start_time}</Card.Text>
-        <Card.Text>{event.address}</Card.Text>
-        <Card.Text>На {event.count_people} человек </Card.Text>
+        <Card.Text>
+          <b>Дата: </b>
+          {event.date}
+        </Card.Text>
+        <Card.Text>
+          <b>Время: </b>
+          {event.start_time}
+        </Card.Text>
+        <Card.Text>
+          <b>Место проведения: </b>
+          {event.address}
+        </Card.Text>
+        <Card.Text>
+          На <b>{event.count_people} </b> человек{" "}
+        </Card.Text>
         <div className="mb-5" id="event-types">
           {event.tags?.map((e, i) => (
             <span key={i} className="event-type">
@@ -123,7 +180,17 @@ export default function EventsPage() {
             </span>
           ))}
         </div>
-        <Button variant="success">Пойду</Button>
+        <div className="mb-5" id="event-types">
+          <button onClick={() => setLike(event.id)}>Лайк</button>
+          <button onClick={() => setDislike(event.id)}>Дизлайк</button>
+        </div>
+        <Button
+          disabled={!event.can_join}
+          onClick={() => joinEvent(event.id)}
+          variant="success"
+        >
+          Пойду
+        </Button>
       </Card.Body>
     </Card>
   );

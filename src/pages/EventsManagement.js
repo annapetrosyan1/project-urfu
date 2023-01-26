@@ -125,7 +125,13 @@ export default function EventsManagement() {
     <Row>
       <Col md={8}>
         <h3>Управление мероприятиями</h3>
-        <CreateEvent show={modalShow} onHide={() => setModalShow(false)} />
+        <CreateEvent
+          show={modalShow}
+          onHide={() => {
+            setModalShow(false);
+            getMyEvents();
+          }}
+        />
         <p>
           <button
             onClick={() => setModalShow(true)}
@@ -232,7 +238,7 @@ function CreateEvent(props) {
                   О чем будет мероприятие? До 140 символов
                 </Form.Label>
                 <Form.Control
-                  onChange={(e) => handleEvent("descr", e.target.value)}
+                  onChange={(e) => handleEvent("description", e.target.value)}
                   as="textarea"
                   rows={4}
                   placeholder="Посмотрим фильм, поиграем в настолки. Приходи и зови друзей!"

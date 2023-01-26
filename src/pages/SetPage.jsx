@@ -118,7 +118,7 @@ export default function EventsPage() {
       <Row xs={1} md={3} className="g-2 my-3">
         {events.map((e, i) => (
           <Col key={i}>
-            <Card>
+            <Card className="card_item" style={{ cursor: "pointer" }}>
               <div
                 onClick={() => navigate(`/event/${e.id}`)}
                 className="card__wrap"
@@ -126,15 +126,12 @@ export default function EventsPage() {
                 <img
                   className="card__img"
                   alt="card-img"
-                  src={logo}
+                  src={require(`../img/${e.id}.png`)}
                   style={{ padding: "24px", width: "100px" }}
                 />
                 <div className="card__body">
                   <div className="title">
                     <h5>{e.title}</h5>
-                  </div>
-                  <div className="subtitle">
-                    <span>Описание</span>
                   </div>
                   <div>Дата: {e.date + " " + e.start_time}</div>
                   <div>Место: {e.address}</div>

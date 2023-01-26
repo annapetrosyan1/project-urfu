@@ -63,6 +63,21 @@
   box-shadow: 0px 0px 12px rgba(94, 72, 123, 0.4);
   border-radius: 20px;
   font-size: 16px;
+  transition: 1.5s transform;
+}
+
+.card_item {
+  margin-right: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0px 0px 12px rgba(94, 72, 123, 0.4);
+  border-radius: 20px;
+  font-size: 16px;
+  transition: 1.5s transform;
+}
+
+.card_item:hover {
+  transform: scale(1.1);
+  z-index: 2;
 }
 
 .minW {
@@ -71,10 +86,10 @@
 
 .card__img {
   display: block;
-  margin: 24px 0 24px auto;
+  margin: 12px 0 12px auto;
   padding: 24px;
-  min-height: 100px;
-  min-height: 100px;
+  min-height: 173px;
+  min-width: 173px;
   border-radius: 20px;
 }
 
