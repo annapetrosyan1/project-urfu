@@ -79,9 +79,6 @@
 }
 
 .card__body {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: flex-end;
   margin: 24px;
 }
 

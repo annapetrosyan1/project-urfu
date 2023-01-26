@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import logo from "../logo.svg";
 import { Row, Col, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 
-export default function EventsPage() {
+function Events() {
   const navigate = useNavigate();
   const [events, setEvents] = useState([]);
 
@@ -12,8 +11,8 @@ export default function EventsPage() {
     const doFetch = async () => {
       const response = await fetch("http://46.48.59.66:2222/events");
       const result = await response.json();
+      result.length = 3;
       setEvents(result);
-      console.log(result);
     };
     doFetch();
   };
@@ -22,11 +21,10 @@ export default function EventsPage() {
 
   return (
     <div>
-      <h3>Афиша мероприятий</h3>
       <Row xs={1} md={3} className="g-2 my-3">
         {events.map((e, i) => (
           <Col key={i}>
-            <Card>
+          <Card>
               <div
                 onClick={() => navigate(`/event/${e.id}`)}
                 className="card__wrap"
@@ -50,14 +48,8 @@ export default function EventsPage() {
           </Col>
         ))}
       </Row>
-      <div className="d-flex justify-content-center">
-        <Button className="me-2" disabled variant="secondary">
-          ← Следующая страница
-        </Button>{" "}
-        <Button disabled variant="primary">
-          Следующая страница →
-        </Button>{" "}
-      </div>
     </div>
   );
 }
+
+export default Events;

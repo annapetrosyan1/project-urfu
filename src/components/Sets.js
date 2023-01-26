@@ -12,6 +12,7 @@ function Sets() {
     const doFetch = async () => {
       const response = await fetch("http://46.48.59.66:2222/sets");
       const result = await response.json();
+      result.length = 3;
       setTags(result);
     };
     doFetch();
@@ -21,7 +22,6 @@ function Sets() {
 
   return (
     <div className="my-3">
-      <h3>Подборки</h3>
       <Row xs={1} md={3} className="g-2 my-3">
         {tags.map((e, i) => (
           <Col key={i}>
