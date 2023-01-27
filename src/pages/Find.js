@@ -158,23 +158,19 @@ function Find() {
             <Form.Group className="mb-3">
               <Form.Label>Дата начала</Form.Label>
               <Form.Control
-                onChange={(e) =>
-                  handleSettings("start_time", e.target.value, "0")
-                }
+                onChange={(e) => handleSettings("date", e.target.value, "0")}
                 type="date"
               />
               <Form.Text className="text-muted">От</Form.Text>
               <Form.Control
-                onChange={(e) =>
-                  handleSettings("start_time", e.target.value, "1")
-                }
+                onChange={(e) => handleSettings("date", e.target.value, "1")}
                 type="date"
               />
               <Form.Text className="text-muted">До</Form.Text>
             </Form.Group>
           </Col>
           <Col md={4}>
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3 mt-4">
               <Form.Label>Выберите теги</Form.Label>
               <Select
                 closeMenuOnSelect={false}

@@ -99,7 +99,9 @@ export default function User() {
           .pop()}`
       );
       const result = await response.json();
+      setUser(result);
       console.log(result);
+      setMyEvents(result.events);
     };
     doFetch();
   };
@@ -107,10 +109,10 @@ export default function User() {
 
   return (
     <Row>
-      <Col md={6}>
-        <img style={{ width: "100%" }}></img>
+      <Col md={3}>
+        <img style={{ width: "100%" }} src={user.icon_id}></img>
       </Col>
-      <Col md={6}>
+      <Col style={{ fontSize: "28px" }} md={9}>
         <div>
           <b>Имя:</b>
         </div>
@@ -118,7 +120,7 @@ export default function User() {
         <div>Поучаствовал в 20!</div>
       </Col>
       <Col md={8}>
-        <h4>Вы - организатор</h4>
+        <h4>Он организатор</h4>
         {myEvents?.owner?.future_event?.map((e, i) => (
           <Card key={i} className="px-3 py-5">
             <div>
@@ -178,7 +180,7 @@ export default function User() {
         ))}
       </Col>
       <Col md={4}>
-        <h4>Вы записаны</h4>
+        <h4>Собирается идти</h4>
         {myEvents?.member?.future_event?.map((e, i) => (
           <Card key={i} className="px-3 py-5">
             <div>

@@ -4,6 +4,8 @@ import { Row, Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
+import { useNavigate } from "react-router-dom";
 
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
@@ -225,41 +227,51 @@ export default function EventsPage(id) {
         </Card.Body>
       </Card>
       <h4>Комментарии</h4>
-      <Comments />
+      <Comments data={event.comments || []} event_id={event.id} />
     </>
   );
 }
 
-function Comments(event_id) {
+function Comments({ event_id, data }) {
+  const navigate = useNavigate();
+  const [comment, setComment] = useState("");
   const onSubmit = async () => {
+    setComment("");
     const response = await fetch(`http://46.48.59.66:2222/comment/`, {
       method: "POST",
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token"),
         "Content-Type": "application/json;charset=utf-8",
       },
-      body: JSON.stringify({ event_id: 16, comment: "123" }),
+      body: JSON.stringify({ event_id, comment }),
     });
     const result = await response.json();
-    console.log(result);
   };
   return (
     <div>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>Accordion 1</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+      {data?.map((e, i) => (
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography>{e[0]}</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              <span
+                onClick={() => navigate(`/user/${e[0]}`)}
+                style={{ color: "blue", cursor: "pointer" }}
+              >
+                {" "}
+                {" " + e[0]}
+              </span>
+              {e[1]}
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+      ))}
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -269,11 +281,23 @@ function Comments(event_id) {
           <Typography>Оставить комментарий</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-            <button onClick={onSubmit}>Отправить</button>
-          </Typography>
+          <Row>
+            <Col>
+              <Form>
+                <Form.Group className="mb-3">
+                  <Form.Control
+                    as={"textarea"}
+                    onChange={(e) => setComment(e.target.value)}
+                    placeholder="Круто!"
+                  />
+                </Form.Group>
+
+                <Button onClick={onSubmit} variant="primary">
+                  Отправить
+                </Button>
+              </Form>
+            </Col>
+          </Row>
         </AccordionDetails>
       </Accordion>
     </div>

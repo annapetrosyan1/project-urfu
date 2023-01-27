@@ -8,7 +8,6 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const onSubmit = async () => {
-    console.log({ username, password });
     const response = await fetch("http://46.48.59.66:2222/login", {
       method: "POST",
       headers: {
