@@ -175,7 +175,7 @@ export default function EventsPage(id) {
                 <b>Описание: </b>
                 {event.description}
               </Card.Text>
-              <Button onClick={() => navigate(`/user/${event.owner}`)} variant="success">
+              <Button onClick={() => navigate(`/user/${event.owner}`)} variant="primary">
                 Организатор
               </Button>
               <Card.Text>
@@ -219,7 +219,7 @@ export default function EventsPage(id) {
               <Button
                 disabled={!event.can_join}
                 onClick={() => joinEvent(event.id)}
-                variant="success"
+                variant="primary"
               >
                 Пойду
               </Button>
