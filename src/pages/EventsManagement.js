@@ -86,6 +86,7 @@ const tags = [
 ];
 
 export default function EventsManagement() {
+
   const navigate = useNavigate();
   const [modalShow, setModalShow] = useState(false);
   const [myEvents, setMyEvents] = useState([]);
@@ -120,6 +121,9 @@ export default function EventsManagement() {
   };
 
   useEffect(getMyEvents, []);
+  if (!sessionStorage.getItem("token")) {
+    return;
+  }
 
   return (
     <Row>
