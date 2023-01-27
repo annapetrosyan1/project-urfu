@@ -139,7 +139,6 @@ export default function User() {
               <div>
                 <span>Описание: {e.description}</span>
               </div>
-              <div>Организация</div>
             </div>
             <div className="my-5">
               {e.tags?.map((e, i) => (
@@ -196,9 +195,8 @@ export default function User() {
               <h5>Название: {e.title}</h5>
               <div>Дата и время: {e.date + " " + e.start_time}</div>
               <div>
-                <span>Описание</span>
+                <span>Описание: {e.description}</span>
               </div>
-              <div>Организация</div>
             </div>
             <div className="my-5">
               {e.tags?.map((e, i) => (
@@ -225,9 +223,8 @@ export default function User() {
               <h5>Название: {e.title}</h5>
               <div>Дата и время: {e.date + " " + e.start_time}</div>
               <div>
-                <span>Описание</span>
+                <span>Описание: {e.description}</span>
               </div>
-              <div>Организация</div>
             </div>
             <div className="my-5">
               {e.tags?.map((e, i) => (
