@@ -174,6 +174,9 @@ export default function EventsPage(id) {
                 <b>Описание: </b>
                 {event.description}
               </Card.Text>
+              <Button onClick={() => navigate(`/user/${event.owner}`)} variant="success">
+                Организатор
+              </Button>
               <Card.Text>
                 <b>Дата: </b>
                 {event.date}
