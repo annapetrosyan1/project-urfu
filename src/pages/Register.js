@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./login.css";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
   const [user, setUser] = useState({});
 
   const handleUser = (key, value) => {
@@ -23,6 +25,7 @@ function Register() {
       },
       body: JSON.stringify(obj),
     });
+    navigate("/login");
   };
 
   return (
@@ -112,24 +115,11 @@ function Register() {
               ></input>
               <span class="focus__input"></span>
             </div>
-
-            {/* <div class="text-right p-t-13 p-b-23">
-						<a href="#" class="txt1">
-                            Забыли пароль?
-						</a>
-					</div> */}
-
             <div class="container__button">
               <button onClick={onSubmit} class="login__button">
                 Зарегистрироваться
               </button>
             </div>
-
-            {/* <div class="container__signIn">
-						<a href="#" class="txt2">
-							Зарегистрироваться
-						</a>
-					</div> */}
           </div>
         </div>
       </div>

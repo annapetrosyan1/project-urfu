@@ -24,7 +24,7 @@ function Events() {
       <Row xs={1} md={3} className="g-2 my-3">
         {events.map((e, i) => (
           <Col key={i}>
-          <Card>
+            <Card className="card_item" style={{ cursor: "pointer" }}>
               <div
                 onClick={() => navigate(`/event/${e.id}`)}
                 className="card__wrap"
@@ -32,16 +32,25 @@ function Events() {
                 <img
                   className="card__img"
                   alt="card-img"
-                  src={logo}
+                  src={e.icon_id}
                   style={{ padding: "24px", width: "100px" }}
                 />
                 <div className="card__body">
                   <div>
                     <h5>{e.title}</h5>
                   </div>
-                  <div>Описание</div>
-                  <div>Дата: {e.date + " " + e.start_time}</div>
-                  <div>Место: {e.address}</div>
+                  <div>
+                    <b>Дата: </b> {e.date}
+                  </div>
+                  <div>
+                    <b>Время: </b>{" "}
+                    {e.start_time.split(":")[0] +
+                      ":" +
+                      e.start_time.split(":")[1]}
+                  </div>
+                  <div>
+                    <b>Место: </b> {e.address}
+                  </div>
                 </div>
               </div>
             </Card>

@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import Container from "react-bootstrap/esm/Container";
 import Profile from "./pages/Profile";
 import Mero from "./pages/Mero";
+import User from "./pages/User";
 import SetPage from "./pages/SetPage";
 import EventsManagement from "./pages/EventsManagement";
 import Error from "./pages/Error";
@@ -30,6 +31,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/user/:id" element={<User />} />
             <Route path="/event/:id" element={<Mero />} />
             <Route path="/set/:id" element={<SetPage />} />
             <Route path="/my" element={<EventsManagement />} />

@@ -12,6 +12,8 @@ function Sets() {
     const doFetch = async () => {
       const response = await fetch("http://46.48.59.66:2222/sets");
       const result = await response.json();
+      console.log(result);
+      result.sort((a, b) => b.event_count - a.event_count);
       result.length = 3;
       setTags(result);
     };
@@ -25,7 +27,11 @@ function Sets() {
       <Row xs={1} md={3} className="g-2 my-3">
         {tags.map((e, i) => (
           <Col key={i}>
-            <Card onClick={() => navigate(`/set/${e.id}`)}>
+            <Card
+              className="card_item"
+              onClick={() => navigate(`/set/${e.id}`)}
+              style={{ cursor: "pointer" }}
+            >
               <div className="card__wrap">
                 <div className="card__body">
                   <div className="sets-title">
@@ -38,7 +44,7 @@ function Sets() {
                 <img
                   className="card__img"
                   alt="card-img"
-                  src={logo}
+                  src={require(`../img/${e.id}.png`)}
                   style={{ padding: "24px", width: "150px" }}
                 />
               </div>

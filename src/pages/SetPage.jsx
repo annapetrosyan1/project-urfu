@@ -91,7 +91,7 @@ export default function EventsPage() {
   const location = useLocation();
   const idSet = location.pathname.split("/").pop();
   console.log(idSet);
-  console.log(tags[0].filter((e) => e.id === idSet));
+  console.log(tags[0].filter((e) => e.id == idSet));
   const [events, setEvents] = useState([]);
 
   const getEvents = () => {
@@ -114,11 +114,11 @@ export default function EventsPage() {
 
   return (
     <div>
-      <h3>{tags[0].filter((e) => e.id === idSet)[0]?.name}</h3>
+      <h3>{tags[0].filter((e) => e.id == idSet)[0]?.name}</h3>
       <Row xs={1} md={3} className="g-2 my-3">
         {events.map((e, i) => (
           <Col key={i}>
-            <Card>
+            <Card className="card_item" style={{ cursor: "pointer" }}>
               <div
                 onClick={() => navigate(`/event/${e.id}`)}
                 className="card__wrap"
@@ -126,18 +126,25 @@ export default function EventsPage() {
                 <img
                   className="card__img"
                   alt="card-img"
-                  src={logo}
+                  src={e.icon_id}
                   style={{ padding: "24px", width: "100px" }}
                 />
                 <div className="card__body">
                   <div className="title">
                     <h5>{e.title}</h5>
                   </div>
-                  <div className="subtitle">
-                    <span>Описание</span>
+                  <div>
+                    <b>Дата: </b> {e.date}
                   </div>
-                  <div>Дата: {e.date + " " + e.start_time}</div>
-                  <div>Место: {e.address}</div>
+                  <div>
+                    <b>Время: </b>{" "}
+                    {e.start_time.split(":")[0] +
+                      ":" +
+                      e.start_time.split(":")[1]}
+                  </div>
+                  <div>
+                    <b>Место: </b> {e.address}
+                  </div>
                 </div>
               </div>
             </Card>

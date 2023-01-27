@@ -50,11 +50,11 @@
 }
 
 .header {
-  background-color: #799DE4;
+  background-color: #799de4;
 }
 
 .footer {
-  background-color: #799DE4;
+  background-color: #799de4;
 }
 
 .card {
@@ -63,6 +63,21 @@
   box-shadow: 0px 0px 12px rgba(94, 72, 123, 0.4);
   border-radius: 20px;
   font-size: 16px;
+  transition: 1.5s transform;
+}
+
+.card_item {
+  margin-right: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0px 0px 12px rgba(94, 72, 123, 0.4);
+  border-radius: 20px;
+  font-size: 16px;
+  transition: 1.5s transform;
+}
+
+.card_item:hover {
+  transform: scale(1.1);
+  z-index: 2;
 }
 
 .minW {
@@ -71,10 +86,10 @@
 
 .card__img {
   display: block;
-  margin: 24px 0 24px auto;
+  margin: 12px 0 12px auto;
   padding: 24px;
-  min-height: 100px;
-  min-height: 100px;
+  min-height: 173px;
+  min-width: 173px;
   border-radius: 20px;
 }
 
@@ -110,12 +125,13 @@
   justify-content: space-between;
 }
 
-select, input {
+select,
+input {
   padding: 10px;
   margin: 10px 0;
   border-radius: 7px;
   height: 38px;
-  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
   text-align: center;
   vertical-align: middle;
 }
@@ -140,7 +156,7 @@ select, input {
   float: left;
 }
 
-.find-item:last-child{
+.find-item:last-child {
   display: flex;
   float: left;
   margin-right: 0;
@@ -149,7 +165,7 @@ select, input {
 .search-button {
   height: 40px;
   width: 157px;
-  background-color: #F7F99E;
+  background-color: #f7f99e;
   color: #042449;
   font-family: Inter;
   border: none;
@@ -160,7 +176,7 @@ select, input {
 }
 
 .search-button:hover {
-  background-color: #F1F38B;
+  background-color: #f1f38b;
 }
 
 .save-button {
@@ -172,17 +188,18 @@ select, input {
   vertical-align: middle;
 }
 
-.profile-form > label, input {
-  height: 38px; 
-  width: 407px;
+.profile-form > label,
+input {
+  height: 38px;
+  max-width: 407px;
 }
 
 .date-string {
-  display: 'flex'; 
-  flex-direction: 'row';
+  display: "flex";
+  flex-direction: "row";
 }
 
-.profile-date{
+.profile-date {
   margin-right: 32px;
 }
 
@@ -203,7 +220,7 @@ select, input {
 }
 
 .create-button:hover {
-  background-color: #5277A2;
+  background-color: #5277a2;
 }
 
 .event-card-wrap {
@@ -221,30 +238,27 @@ select, input {
   width: 184px;
   height: 40px;
   color: #346297;
-  background-color: #E8EEFA;
+  background-color: #e8eefa;
   border: none;
   border-radius: 7px;
   text-align: center;
   vertical-align: middle;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 32px;
 }
 
-.will-go-button:hover{
-  background-color: #DCE2E8;
+.will-go-button:hover {
+  background-color: #dce2e8;
 }
 
 .event-type {
   color: #000000;
-  background-color: #F7F99E;
+  background-color: #f7f99e;
   border-radius: 15px;
   border: none;
   text-align: center;
   vertical-align: middle;
-  padding: 8px;
-  margin-right: 16px;
-  margin-bottom: 32px;
-  position: relative;
+  padding: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  box-sizing: border-box;
 }
