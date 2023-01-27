@@ -181,7 +181,7 @@ function Find() {
               />
             </Form.Group>
             <div className="d-flex justify-content-end mt-5 me-2">
-              <Button onClick={getEvents} variant="warning">
+              <Button onClick={getEvents} variant="primary">
                 Найти
               </Button>
             </div>
