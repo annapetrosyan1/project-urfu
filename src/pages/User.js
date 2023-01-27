@@ -114,10 +114,20 @@ export default function User() {
       </Col>
       <Col style={{ fontSize: "28px" }} md={9}>
         <div>
-          <b>Имя:</b>
+          <b>{user.name + " " + user.surname}</b>
         </div>
-        <div>Организовал 20 ивентов!</div>
-        <div>Поучаствовал в 20!</div>
+        <div>
+          Организовал{" "}
+          {user?.events?.owner?.past_event?.length +
+            user?.events?.owner?.future_event?.length}{" "}
+          ивентов(а)!
+        </div>
+        <div>
+          Поучаствовал в{" "}
+          {user?.events?.member?.past_event?.length +
+            user?.events?.member?.future_event?.length}
+          !
+        </div>
       </Col>
       <Col md={8}>
         <h4>Он организатор</h4>

@@ -266,7 +266,7 @@ function Comments({ event_id, data }) {
               >
                 {" "}
                 {" " + e[0]}
-              </span>
+              </span><span> </span>
               {e[1]}
             </Typography>
           </AccordionDetails>
