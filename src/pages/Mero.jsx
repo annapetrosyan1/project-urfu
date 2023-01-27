@@ -96,6 +96,7 @@ const tags = [
 ];
 
 export default function EventsPage(id) {
+  const navigate = useNavigate();
   const location = useLocation();
   const [event, setEvent] = useState({});
 
