@@ -29,11 +29,6 @@ function Footer() {
                         />
                     </Link>
                     </li>
-                    <li className="nav-item">
-                    <Link className="nav-link active" to="/">
-                        support@example.com
-                    </Link>
-                    </li>
                 </ul>
             </nav>
         </Container>
