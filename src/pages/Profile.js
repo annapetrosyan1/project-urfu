@@ -68,7 +68,7 @@ function Profile() {
                 </p>
               </div>
             </fieldset>
-            <Button className="mb-2" onClick={onSubmit} variant="warning">
+            <Button className="mb-2" onClick={onSubmit} variant="primary">
               Сохранить
             </Button>{" "}
             <div>
