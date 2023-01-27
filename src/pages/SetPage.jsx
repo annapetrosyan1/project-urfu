@@ -126,7 +126,7 @@ export default function EventsPage() {
                 <img
                   className="card__img"
                   alt="card-img"
-                  src={require(`../img/${e.id}.png`)}
+                  src={e.icon_id}
                   style={{ padding: "24px", width: "100px" }}
                 />
                 <div className="card__body">

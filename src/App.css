@@ -191,7 +191,7 @@ input {
 .profile-form > label,
 input {
   height: 38px;
-  width: 407px;
+  max-width: 407px;
 }
 
 .date-string {

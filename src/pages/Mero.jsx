@@ -5,6 +5,15 @@ import { useLocation } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
+
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 const tags = [
   {
     value: 0,
@@ -147,51 +156,126 @@ export default function EventsPage(id) {
   useEffect(getEvent, []);
 
   return (
-    <Card>
-      <Card.Header>Хорошее событие!</Card.Header>
-      <Card.Body>
-        <Card.Title>
-          <b>Название: </b>
-          {event.title}
-        </Card.Title>
-        <Card.Text>
-          <b>Описание: </b>
-          {event.description}
-        </Card.Text>
-        <Card.Text>
-          <b>Дата: </b>
-          {event.date}
-        </Card.Text>
-        <Card.Text>
-          <b>Время: </b>
-          {event.start_time}
-        </Card.Text>
-        <Card.Text>
-          <b>Место проведения: </b>
-          {event.address}
-        </Card.Text>
-        <Card.Text>
-          На <b>{event.count_people} </b> человек{" "}
-        </Card.Text>
-        <div className="mb-5" id="event-types">
-          {event.tags?.map((e, i) => (
-            <span key={i} className="event-type">
-              {tags.filter((tag) => tag.value == e)[0]?.label}
-            </span>
-          ))}
-        </div>
-        <div className="mb-5" id="event-types">
-          <button onClick={() => setLike(event.id)}>Лайк</button>
-          <button onClick={() => setDislike(event.id)}>Дизлайк</button>
-        </div>
-        <Button
-          disabled={!event.can_join}
-          onClick={() => joinEvent(event.id)}
-          variant="success"
+    <>
+      {" "}
+      <Card>
+        <Card.Header>Хорошее событие!</Card.Header>
+        <Card.Body>
+          <Row>
+            <Col md={8}>
+              {" "}
+              <Card.Title>
+                <b>Название: </b>
+                {event.title}
+              </Card.Title>
+              <Card.Text>
+                <b>Описание: </b>
+                {event.description}
+              </Card.Text>
+              <Card.Text>
+                <b>Дата: </b>
+                {event.date}
+              </Card.Text>
+              <Card.Text>
+                <b>Время: </b>
+                {event.start_time}
+              </Card.Text>
+              <Card.Text>
+                <b>Место проведения: </b>
+                {event.address}
+              </Card.Text>
+              <Card.Text>
+                Количество мест: <b>{event.count_people} </b>
+              </Card.Text>
+              <div className="mb-5" id="event-types">
+                {event.tags?.map((e, i) => (
+                  <span key={i} className="event-type">
+                    {tags.filter((tag) => tag.value == e)[0]?.label}
+                  </span>
+                ))}
+              </div>
+              <div
+                style={{ cursor: "pointer" }}
+                className="mb-5"
+                id="event-types"
+              >
+                {event.likes || 0}
+                <ThumbUpIcon
+                  className="ms-2"
+                  onClick={() => setLike(event.id)}
+                />
+                <ThumbDownAltIcon
+                  onClick={() => setDislike(event.id)}
+                  className="ms-4 me-2"
+                />
+                {event.dislikes || 0}
+              </div>
+              <Button
+                disabled={!event.can_join}
+                onClick={() => joinEvent(event.id)}
+                variant="success"
+              >
+                Пойду
+              </Button>
+            </Col>
+            <Col className="mt-2" md={4}>
+              <img style={{ maxWidth: "100%" }} src={event.icon_id} />
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
+      <h4>Комментарии</h4>
+      <Comments />
+    </>
+  );
+}
+
+function Comments(event_id) {
+  const onSubmit = async () => {
+    const response = await fetch(`http://46.48.59.66:2222/comment/`, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token"),
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({ event_id: 16, comment: "123" }),
+    });
+    const result = await response.json();
+    console.log(result);
+  };
+  return (
+    <div>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
         >
-          Пойду
-        </Button>
-      </Card.Body>
-    </Card>
+          <Typography>Accordion 1</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography>Оставить комментарий</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            <button onClick={onSubmit}>Отправить</button>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+    </div>
   );
 }

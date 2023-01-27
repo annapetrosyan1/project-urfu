@@ -40,15 +40,25 @@ export default function EventsPage() {
                 <img
                   className="card__img"
                   alt="card-img"
-                  src={require(`../img/${e.id}.png`)}
+                  src={e.icon_id}
                   style={{ padding: "24px", width: "100px" }}
                 />
                 <div className="card__body">
                   <div>
                     <h5>{e.title}</h5>
                   </div>
-                  <div>Дата: {e.date + " " + e.start_time}</div>
-                  <div>Место: {e.address}</div>
+                  <div>
+                    <b>Дата: </b> {e.date}
+                  </div>
+                  <div>
+                    <b>Время: </b>{" "}
+                    {e.start_time.split(":")[0] +
+                      ":" +
+                      e.start_time.split(":")[1]}
+                  </div>
+                  <div>
+                    <b>Место: </b> {e.address}
+                  </div>
                 </div>
               </div>
             </Card>

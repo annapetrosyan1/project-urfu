@@ -31,7 +31,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/user" element={<User />} />
+            <Route path="/user/:id" element={<User />} />
             <Route path="/event/:id" element={<Mero />} />
             <Route path="/set/:id" element={<SetPage />} />
             <Route path="/my" element={<EventsManagement />} />

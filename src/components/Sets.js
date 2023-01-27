@@ -12,6 +12,8 @@ function Sets() {
     const doFetch = async () => {
       const response = await fetch("http://46.48.59.66:2222/sets");
       const result = await response.json();
+      console.log(result);
+      result.sort((a, b) => b.event_count - a.event_count);
       result.length = 3;
       setTags(result);
     };

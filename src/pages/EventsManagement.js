@@ -123,26 +123,26 @@ export default function EventsManagement() {
 
   return (
     <Row>
+      <h3>Управление мероприятиями</h3>
+      <CreateEvent
+        show={modalShow}
+        onHide={() => {
+          setModalShow(false);
+          getMyEvents();
+        }}
+      />
+      <p>
+        <button
+          onClick={() => setModalShow(true)}
+          type="button"
+          className="create-button"
+        >
+          Создать мероприятие
+        </button>
+      </p>
       <Col md={8}>
-        <h3>Управление мероприятиями</h3>
-        <CreateEvent
-          show={modalShow}
-          onHide={() => {
-            setModalShow(false);
-            getMyEvents();
-          }}
-        />
-        <p>
-          <button
-            onClick={() => setModalShow(true)}
-            type="button"
-            className="create-button"
-          >
-            Создать мероприятие
-          </button>
-        </p>
         <h4>Вы - организатор</h4>
-        {myEvents?.map((e, i) => (
+        {myEvents?.owner?.future_event?.map((e, i) => (
           <Card key={i} className="px-3 py-5">
             <div>
               <h5>Название: {e.title}</h5>
@@ -169,6 +169,104 @@ export default function EventsManagement() {
                   Удалить
                 </Button>{" "}
               </div>
+              <button
+                onClick={() => navigate(`/event/${e.id}`)}
+                type="button"
+                className="will-go-button"
+              >
+                Перейти
+              </button>
+            </div>
+          </Card>
+        ))}
+        <h4>Архив</h4>
+        {myEvents?.owner?.past_event?.map((e, i) => (
+          <Card key={i} className="px-3 py-5">
+            <div>
+              <h5>Название: {e.title}</h5>
+              <div>Дата и время: {e.date + " " + e.start_time}</div>
+              <div>
+                <span>Описание</span>
+              </div>
+              <div>Организация</div>
+            </div>
+            <div className="my-5">
+              {e.tags?.map((e, i) => (
+                <span key={i} className="event-type">
+                  {tags.filter((tag) => tag.value == e)[0]?.label}
+                </span>
+              ))}
+            </div>
+            <div className="d-flex justify-content-between">
+              <div>
+                <Button
+                  onClick={() => deleteEvent(e.id)}
+                  variant="outline-danger"
+                  size="sm"
+                >
+                  Удалить
+                </Button>{" "}
+              </div>
+              <button
+                onClick={() => navigate(`/event/${e.id}`)}
+                type="button"
+                className="will-go-button"
+              >
+                Перейти
+              </button>
+            </div>
+          </Card>
+        ))}
+      </Col>
+      <Col md={4}>
+        <h4>Вы записаны</h4>
+        {myEvents?.member?.future_event?.map((e, i) => (
+          <Card key={i} className="px-3 py-5">
+            <div>
+              <h5>Название: {e.title}</h5>
+              <div>Дата и время: {e.date + " " + e.start_time}</div>
+              <div>
+                <span>Описание</span>
+              </div>
+              <div>Организация</div>
+            </div>
+            <div className="my-5">
+              {e.tags?.map((e, i) => (
+                <span key={i} className="event-type">
+                  {tags.filter((tag) => tag.value == e)[0]?.label}
+                </span>
+              ))}
+            </div>
+            <div className="d-flex justify-content-end">
+              <button
+                onClick={() => navigate(`/event/${e.id}`)}
+                type="button"
+                className="will-go-button"
+              >
+                Перейти
+              </button>
+            </div>
+          </Card>
+        ))}
+        <h4>Архив</h4>
+        {myEvents?.member?.past_event?.map((e, i) => (
+          <Card key={i} className="px-3 py-5">
+            <div>
+              <h5>Название: {e.title}</h5>
+              <div>Дата и время: {e.date + " " + e.start_time}</div>
+              <div>
+                <span>Описание</span>
+              </div>
+              <div>Организация</div>
+            </div>
+            <div className="my-5">
+              {e.tags?.map((e, i) => (
+                <span key={i} className="event-type">
+                  {tags.filter((tag) => tag.value == e)[0]?.label}
+                </span>
+              ))}
+            </div>
+            <div className="d-flex justify-content-end">
               <button
                 onClick={() => navigate(`/event/${e.id}`)}
                 type="button"
@@ -282,8 +380,11 @@ function CreateEvent(props) {
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Загрузите обложку мероприятияя</Form.Label>
-                <Form.Control type="file" placeholder="Загрузить фото" />
+                <Form.Label>Обложка мероприятия</Form.Label>
+                <Form.Control
+                  onChange={(e) => handleEvent("icon_id", e.target.value)}
+                  placeholder="url"
+                />
               </Form.Group>
               <Form.Group className="mb-3">
                 <Form.Label>Выберите теги</Form.Label>
@@ -315,3 +416,5 @@ function CreateEvent(props) {
     </Modal>
   );
 }
+
+const obj = {};

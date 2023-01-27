@@ -90,9 +90,8 @@ function Find() {
   const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [setting, setSettings] = useState({
-    title: "",
     date: [],
-    count_people: [],
+    count_people: [0, 1000],
     start_time: [],
     owner: [],
     tags: [],
@@ -212,7 +211,7 @@ function Find() {
               <td>{i + 1}</td>
               <td>{e.title}</td>
               <td>{e.address}</td>
-              <td>{e.date + " " + e.start_time}</td>
+              <td>{e.date + "   " + e.start_time}</td>
             </tr>
           ))}
         </tbody>

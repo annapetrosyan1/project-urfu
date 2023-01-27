@@ -1,8 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
 
 function Profile() {
+  const [user, setUser] = useState({});
+  const [url, setUrl] = useState("");
+  const onSubmit = async () => {};
+
+  const getUser = () => {
+    const doFetch = async () => {
+      const response = await fetch(`http://46.48.59.66:2222/profile`, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token"),
+          "Content-Type": "application/json;charset=utf-8",
+        },
+      });
+      const result = await response.json();
+      console.log(result);
+      setUser(result);
+    };
+    doFetch();
+  };
+  useEffect(() => getUser(), []);
+
   return (
     <div>
       <Form>
@@ -10,71 +31,41 @@ function Profile() {
           <legend>Имя Фамилия</legend>
           <div className="profile-form">
             <p>
-              <label htmlFor="surname">Фамилия</label>
-              <br />
-              <input type="text" id="surname" required />
-            </p>
-            <p>
               <label htmlFor="name">Имя</label>
               <br />
-              <input type="text" id="name" required />
+              <input
+                disabled
+                value={user.name}
+                type="text"
+                id="name"
+                required
+              />
             </p>
-            {/* <p>
-              <label htmlFor="mid-name">Отчество</label>
-              <br />
-              <input type="text" id="mid-name" required />
-            </p> */}
-
-            {/* <div className="date-string">
-              <div className="profile-date">
-                <label htmlFor="date">Дата рождения </label>
-                <br />
-                <input
-                  type="date"
-                  id="date"
-                  required
-                  style={{ float: "left", width: "188px" }}
-                />
-                <label htmlFor="sex">Пол</label>
-                <select id="sex" required style={{ width: "188px" }}>
-                  <option disabled>Выберите пол</option>
-                  <option value="male">Мужской</option>
-                  <option value="female">Женский</option>
-                </select>
-              </div>
-            </div> */}
             <p>
-              <label htmlFor="email">E-mail</label>
+              <label htmlFor="surname">Фамилия</label>
               <br />
-              <input type="email" id="email" required />
+              <input
+                disabled
+                value={user.surname}
+                type="text"
+                id="surname"
+                required
+              />
             </p>
-            {/* <p>
-              <label htmlFor="org">Организация</label>
+            <p>
+              <label htmlFor="surname">Фото профиля</label>
               <br />
-              <select id="org" required style={{ width: "407px" }}>
-                <option disabled>Выберите</option>
-                <option value="ienim">ИЕНИМ</option>
-                <option value="inmit">ИНМиТ</option>
-                <option value="rtf">ИРИТ-РТФ</option>
-                <option value="isa">ИСА</option>
-                <option value="ifk">ИФКСиПМ</option>
-                <option value="info">ИНФО</option>
-                <option value="iney">ИНЭУ</option>
-                <option value="ugi">УГИ</option>
-                <option value="enin">УралЭНИН</option>
-                <option value="fti">ФТИ</option>
-                <option value="hti">ХТИ</option>
-              </select>
-            </p> */}
+              <input
+                onChange={(e) => setUrl(e.target.value)}
+                type="text"
+                id="surname"
+                placeholder="url"
+                required
+              />
+            </p>
           </div>
         </fieldset>
-        <Button
-          className="mb-2"
-          onClick={() => {
-            sessionStorage.clear();
-          }}
-          variant="warning"
-        >
+        <Button className="mb-2" onClick={onSubmit} variant="warning">
           Сохранить
         </Button>{" "}
         <div>

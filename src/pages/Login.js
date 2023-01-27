@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.css";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   const onSubmit = async () => {
+    console.log({ username, password });
     const response = await fetch("http://46.48.59.66:2222/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       },
-      body: JSON.stringify({ username: "test007@mail.ru", password: "blzrov" }),
+      body: JSON.stringify({ username, password }),
     });
     const result = await response.json();
     sessionStorage.setItem("token", result.access_token[0]);
+    navigate("/");
   };
+
   return (
     <div class="limiter">
       <div class="container__login">
@@ -31,6 +39,7 @@ function Login() {
               data-validate="Введите эл. почту или имя пользователя"
             >
               <input
+                onChange={(e) => setUsername(e.target.value)}
                 class="input"
                 type="text"
                 name="username"
@@ -46,6 +55,7 @@ function Login() {
               data-validate="Введите пароль"
             >
               <input
+                onChange={(e) => setPassword(e.target.value)}
                 class="input"
                 type="password"
                 name="password"
